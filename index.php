@@ -1,21 +1,13 @@
 <?php
 
-$employees = [
-    [
-        "id" => 1,
-        "last_name" => "Muteba",
-        "first_name" => "Divin",
-        "age" => 22
-    ],
-    [
-        "id" => 2,
-        "last_name" => "Kabeya",
-        "first_name" => "Jean",
-        "age" => 25
-    ]
-];
+require_once "connexion.php";
 
-?><!DOCTYPE html><html lang="fr"><head>
+$sql = "SELECT * FROM employees ORDER BY id DESC";
+$stmt = $pdo->query($sql);
+$employees = $stmt->fetchAll();
+
+?><!DOCTYPE html><html lang="fr">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des employés</title>
@@ -29,8 +21,7 @@ $employees = [
 
     <section>
         <h2>Liste des employés</h2>
-
-        <button type="button">Ajouter un employé</button>
+        <a href="ajouter.php" class="btn">Ajouter un employé</a>
     </section>
 
     <section>
@@ -42,7 +33,6 @@ $employees = [
         <?php else : ?>
 
             <table>
-
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -58,21 +48,24 @@ $employees = [
                     <?php foreach ($employees as $employee) : ?>
 
                         <tr>
-                            <td><?= $employee["id"] ?></td>
+                            <td><?= htmlspecialchars((string) $employee["id"]) ?></td>
+
                             <td><?= htmlspecialchars($employee["last_name"]) ?></td>
+
                             <td><?= htmlspecialchars($employee["first_name"]) ?></td>
-                            <td><?= $employee["age"] ?> ans</td>
+
+                            <td><?= htmlspecialchars((string) $employee["age"]) ?> ans</td>
 
                             <td>
-                                <button type="button">Modifier</button>
-                                <button type="button">Supprimer</button>
+                                <a href="modifier.php?id=<?= (int) $employee["id"] ?>">Modifier</a>
+
+                                <a href="supprimer.php?id=<?= (int) $employee["id"] ?>">Supprimer</a>
                             </td>
                         </tr>
 
                     <?php endforeach; ?>
 
                 </tbody>
-
             </table>
 
         <?php endif; ?>
@@ -85,4 +78,5 @@ $employees = [
     <p>Gestion des employés — 2026</p>
 </footer>
 
-</body></html>
+</body>
+</html>
