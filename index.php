@@ -31,7 +31,7 @@ $employes = $stmt->fetchAll();
             <p>Aucun employé enregistré pour le moment.</p>
 
         <?php else : ?>
-
+        <div class="table-container">
             <table>
                 <thead>
                     <tr>
@@ -80,7 +80,7 @@ $employes = $stmt->fetchAll();
 
                 </tbody>
             </table>
-
+        </div>
         <?php endif; ?>
 
     </section>
