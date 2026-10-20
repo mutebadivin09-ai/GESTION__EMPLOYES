@@ -2,9 +2,9 @@
 
 require_once "connexion.php";
 
-$sql = "SELECT * FROM employees ORDER BY id DESC";
+$sql = "SELECT * FROM employes ORDER BY id DESC";
 $stmt = $pdo->query($sql);
-$employees = $stmt->fetchAll();
+$employes = $stmt->fetchAll();
 
 ?><!DOCTYPE html><html lang="fr">
 <head>
@@ -26,7 +26,7 @@ $employees = $stmt->fetchAll();
 
     <section>
 
-        <?php if (empty($employees)) : ?>
+        <?php if (empty($employes)) : ?>
 
             <p>Aucun employé enregistré pour le moment.</p>
 
@@ -45,21 +45,21 @@ $employees = $stmt->fetchAll();
 
                 <tbody>
 
-                    <?php foreach ($employees as $employee) : ?>
+                    <?php foreach ($employes as $employes) : ?>
 
                         <tr>
-                            <td><?= htmlspecialchars((string) $employee["id"]) ?></td>
+                            <td><?= htmlspecialchars((string) $employes["id"]) ?></td>
 
-                            <td><?= htmlspecialchars($employee["last_name"]) ?></td>
+                            <td><?= htmlspecialchars($employes["last_name"]) ?></td>
 
-                            <td><?= htmlspecialchars($employee["first_name"]) ?></td>
+                            <td><?= htmlspecialchars($employes["first_name"]) ?></td>
 
-                            <td><?= htmlspecialchars((string) $employee["age"]) ?> ans</td>
+                            <td><?= htmlspecialchars((string) $employes["age"]) ?> ans</td>
 
                             <td>
-                                <a href="modifier.php?id=<?= (int) $employee["id"] ?>">Modifier</a>
+                                <a href="modifier.php?id=<?= (int) $employes["id"] ?>">Modifier</a>
 
-                                <a href="supprimer.php?id=<?= (int) $employee["id"] ?>">Supprimer</a>
+                                <a href="supprimer.php?id=<?= (int) $employes["id"] ?>">Supprimer</a>
                             </td>
                         </tr>
 
@@ -75,7 +75,7 @@ $employees = $stmt->fetchAll();
 </main>
 
 <footer>
-    <p>Gestion des employés — 2026</p>
+    <p>Gestion des employés-2026</p>
 </footer>
 
 </body>
