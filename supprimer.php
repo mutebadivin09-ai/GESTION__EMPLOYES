@@ -7,7 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit("Méthode non autorisée.");
 }
 
-$id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
+$id = filter_var(
+    $_POST["id"] ?? null,
+    FILTER_VALIDATE_INT
+);
 
 if (!$id || $id < 1) {
     exit("Identifiant invalide.");
