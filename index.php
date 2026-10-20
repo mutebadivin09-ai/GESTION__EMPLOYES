@@ -56,22 +56,22 @@ $employes = $stmt->fetchAll();
 
                             <td><?= htmlspecialchars((string) $employes["age"]) ?> ans</td>
 
-
                             <td>
-    <a href="modifier.php?id=<?= (int) $employee["id"] ?>">Modifier</a><form action="supprimer.php" method="POST"
-      onsubmit="return confirm('Voulez-vous vraiment supprimer cet employé ?');">
+    <a href="modifier.php?id=<?= (int) $employes["id"] ?>">
+        Modifier
+    </a>
 
-    <input
-        type="hidden"
-        name="id"
-        value="<?= (int) $employee["id"] ?>"
-    >
+    <form action="supprimer.php" method="POST"
+          onsubmit="return confirm('Voulez-vous vraiment supprimer cet employé ?');">
 
-    <button type="submit">Supprimer</button>
+        <input type="hidden" name="id"
+               value="<?= htmlspecialchars((string) $employes["id"]) ?>">
 
-</form>
+        <button type="submit">Supprimer</button>
 
+    </form>
 </td>
+                             
 
                             
                         </tr>
